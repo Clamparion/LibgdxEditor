@@ -601,7 +601,7 @@ public class DektopEditor extends JFrame implements UiHandler{
 		gbc_lblCategorybits.gridy = 17;
 		panel_8.add(lblCategorybits, gbc_lblCategorybits);
 
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -617,7 +617,7 @@ public class DektopEditor extends JFrame implements UiHandler{
 		gbc_lblMaskbits.gridy = 18;
 		panel_8.add(lblMaskbits, gbc_lblMaskbits);
 
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
@@ -898,6 +898,9 @@ public class DektopEditor extends JFrame implements UiHandler{
 	public void setSelectedJoint(Joint joint) {
 		
 		panel_8.setVisible(false);
+		if(jointPanel != null){
+			panel_5.remove(jointPanel);
+		}
 		jointPanel = (new JointPanel(me));
 		if(joint != null){
 			jointPanel.setJoint(joint);

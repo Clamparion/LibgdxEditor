@@ -317,23 +317,7 @@ public class MyBox2DDebugRenderer implements Disposable {
 
 
 			JointType type = joint.getType();
-			if (type == JointType.DistanceJoint) {
-				DistanceJointDef def = (DistanceJointDef)joint.getUserData();
-
-				bodyA = def.bodyA;
-				bodyB = def.bodyB;
-				xf1 = bodyA.getTransform();
-				xf2 = bodyB.getTransform();
-
-				x1 = xf1.getPosition();
-				x2 = xf2.getPosition();
-				p1 = bodyA.getWorldPoint(def.localAnchorA);
-				p2 = bodyB.getWorldPoint(def.localAnchorB);
-
-				drawSegment(p1, p2, col);
-				drawCross(p1, Color.RED);
-				drawCross(p2, Color.RED);
-			} else if(type == JointType.RevoluteJoint) {
+			if(type == JointType.RevoluteJoint) {
 				RevoluteJointDef def = (RevoluteJointDef)joint.getUserData();
 
 				bodyA = def.bodyA;
@@ -415,11 +399,23 @@ public class MyBox2DDebugRenderer implements Disposable {
 				drawCross(p2, Color.RED);
 				drawCross(s1, Color.RED);
 				drawCross(s2, Color.RED);
-			} else {
-				drawSegment(x1, p1, col);
+			} else if (type == JointType.DistanceJoint) {
+				DistanceJointDef def = (DistanceJointDef)joint.getUserData();
+
+				bodyA = def.bodyA;
+				bodyB = def.bodyB;
+				xf1 = bodyA.getTransform();
+				xf2 = bodyB.getTransform();
+
+				x1 = xf1.getPosition();
+				x2 = xf2.getPosition();
+				p1 = bodyA.getWorldPoint(def.localAnchorA);
+				p2 = bodyB.getWorldPoint(def.localAnchorB);
+
 				drawSegment(p1, p2, col);
-				drawSegment(x2, p2, col);
-			}
+				drawCross(p1, Color.RED);
+				drawCross(p2, Color.RED);
+			} 
 
 		}else  {
 
