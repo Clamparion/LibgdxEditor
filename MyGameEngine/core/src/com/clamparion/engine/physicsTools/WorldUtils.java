@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.JointDef;
 import com.badlogic.gdx.physics.box2d.JointDef.JointType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -222,6 +223,21 @@ public class WorldUtils {
 		}
 	}
 
+	public void deleteJoint(Joint joint){
+		joints.removeValue(joint, true);
+		world.destroyJoint(joint);
+		swingUi.setSelectedJoint(null);
+		selectedJoint = null;
+		
+	}
+	public Joint changeJoint(JointDef def, Joint joint){
+		world.destroyJoint(joint);
+		Joint jointnew = world.createJoint(def);
+		jointnew.setUserData(def);
+		selectedJoint = jointnew;
+		return jointnew;
+		
+	}
 
 	public void addBodyToHashmap(Body body){
 		initialPositions.put(body, new SaveBody(body));

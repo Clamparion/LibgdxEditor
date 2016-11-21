@@ -48,7 +48,7 @@ import com.clamparion.engine.physicsTools.WorldUtils.FixtureType;
 public class DektopEditor extends JFrame implements UiHandler{
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPane;
-	private final Starter game; 
+	public final Starter game; 
 	private JTextField textField_2;
 	private JTextField textField_3;
 	ButtonGroup bG = new ButtonGroup();

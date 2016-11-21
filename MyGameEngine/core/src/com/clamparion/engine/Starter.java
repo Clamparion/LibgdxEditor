@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Joint;
+import com.badlogic.gdx.physics.box2d.JointDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.Array;
@@ -89,6 +91,13 @@ public class Starter extends Game {
 		eds.jointModeEnabled = toggle;
 		eds.resetSimulation();
 		eds.deselectAll();
+	}
+	
+	public void deleteJoint(Joint joint){
+		eds.wUtils.deleteJoint(joint);
+	}
+	public Joint changeJoint(JointDef def, Joint joint){
+		return eds.wUtils.changeJoint(def, joint);
 	}
 	
 }

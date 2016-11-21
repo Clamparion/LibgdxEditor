@@ -416,6 +416,33 @@ public class EditorScreen implements Screen, GestureListener, InputProcessor {
 			}
 		}
 		setCursor();
+		
+		if(keycode == Keys.LEFT || keycode == Keys.RIGHT || keycode == Keys.UP || keycode == Keys.DOWN){
+			float deltaX = 0;
+			float deltaY = 0;
+			
+			switch (keycode) {
+			case Keys.LEFT:
+				deltaX = -1;
+				break;
+			case Keys.RIGHT:
+				deltaX = 1;
+				break;
+			case Keys.UP:
+				deltaY = 1;
+				break;
+			case Keys.DOWN:
+				deltaY = -1;
+				break;
+			default:
+				break;
+			}
+			cam.translate(deltaX * cam.zoom * 4, deltaY * cam.zoom * 4);
+			cam.update();
+			gridRenderer.updateCam(cam);
+			updateBox2dCam();
+		}
+		
 		return false;
 	}
 
